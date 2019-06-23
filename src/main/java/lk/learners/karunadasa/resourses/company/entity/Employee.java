@@ -3,6 +3,7 @@ package lk.learners.karunadasa.resourses.company.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.learners.karunadasa.resourses.company.entity.Enum.*;
+import lk.learners.karunadasa.resourses.company.entity.entity.Enum.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 

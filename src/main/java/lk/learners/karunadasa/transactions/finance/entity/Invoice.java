@@ -3,7 +3,6 @@ package lk.learners.karunadasa.transactions.finance.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.learners.karunadasa.Security.entity.User;
 import lk.learners.karunadasa.resourses.company.entity.Student;
-import lk.learners.karunadasa.transactions.finance.entity.DiscountRatio;
 import lk.learners.karunadasa.transactions.finance.entity.Enum.InvoicePrintOrNot;
 import lk.learners.karunadasa.transactions.finance.entity.Enum.PaymentMethod;
 import lombok.*;
