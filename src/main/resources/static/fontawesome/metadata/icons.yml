@@ -4414,7 +4414,7 @@ concierge-bell:
       - attention
       - hotel
       - receptionist
-      - service
+      - serviceStation
       - support
   styles:
     - solid
@@ -17053,7 +17053,7 @@ taxi:
       - cab
       - cabbie
       - car
-      - car service
+      - car serviceStation
       - lyft
       - machine
       - transportation

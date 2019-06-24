@@ -15,7 +15,7 @@ public class DiscountRatio {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Basic
     @Column(name = "name", nullable = false, length = 45)

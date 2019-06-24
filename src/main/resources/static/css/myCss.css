@@ -2,9 +2,13 @@
     font-family: "Times New Roman", Times, serif;
 }
 
+#loginBack{
+    background-image: url('../img/loginBackground.jpg');
+}
+
 /*html Background - start*/
 body {
-    background-image: url('../img/background1.jpg');
+    background-image: url('../img/main.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -30,7 +34,7 @@ body {
 
 /*radio button style -end*/
 
-/*mainwindow properties*/
+/*mainWindow properties*/
 .lblText {
     font-size: 16px;
 }
@@ -39,6 +43,8 @@ body {
     height: 120px;
     border-radius: 5%;
     background-color: #ffffff;
+    width: 120px;
+    margin-bottom: 10px;
 }
 
 .page-footer {

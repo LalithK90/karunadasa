@@ -1,7 +1,7 @@
 package lk.learners.karunadasa.transactions.finance.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lk.learners.karunadasa.Security.entity.User;
+import lk.learners.karunadasa.general.security.entity.User;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,7 +23,7 @@ public class Refund {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade = {

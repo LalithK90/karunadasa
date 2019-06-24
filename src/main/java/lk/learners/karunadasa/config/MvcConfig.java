@@ -29,12 +29,12 @@ public class MvcConfig implements WebMvcConfigurer {
                 .setViewName("login/login");
         registry.addViewController("/mainwindow")
                 .setViewName("mainwindow");
-            }
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //can be impliment like folowing also
-        		//registry.addResourceHandler("/resources/**").addResourceLocations("file:/resources/upload/");
+        //registry.addResourceHandler("/resources/**").addResourceLocations("file:/resources/upload/");
         registry.addResourceHandler("/img/**")
                 .addResourceLocations("classpath:/static/img/");
         registry.addResourceHandler("/css/**")
@@ -52,16 +52,11 @@ public class MvcConfig implements WebMvcConfigurer {
         resolver.setSuffix(".html");
         return resolver;
     }
-// password encode set
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return  new BCryptPasswordEncoder();
-    }
 
-//time zone set to
+    //time zone set to
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer(){
-            return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getTimeZone("Asia/Colombo"));
+    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+        return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getTimeZone("Asia/Colombo"));
     }
 
 }

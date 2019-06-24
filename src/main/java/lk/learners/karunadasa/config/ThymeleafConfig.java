@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.TemplateEngine;
 
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -25,14 +26,14 @@ public class ThymeleafConfig implements ApplicationContextAware, WebMvcConfigure
         this.applicationContext = applicationContext;
     }
 
-/*    @Bean
+    @Bean
     public TemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setEnableSpringELCompiler(true);
         engine.setTemplateResolver(templateResolver());
         engine.addDialect(new SpringSecurityDialect());
         return engine;
-    }*/
+    }
 
     @Bean
     private ITemplateResolver templateResolver() {
@@ -44,11 +45,11 @@ public class ThymeleafConfig implements ApplicationContextAware, WebMvcConfigure
         return resolver;
     }
 
-/*    @Bean
+    @Bean
     public ThymeleafViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine((ISpringTemplateEngine) templateEngine());
         return viewResolver;
-    }*/
+    }
 
 }

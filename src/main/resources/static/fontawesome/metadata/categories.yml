@@ -1993,7 +1993,7 @@ security:
     - user-lock
     - user-secret
     - user-shield
-  label: Security
+  label: security
 shapes:
   icons:
     - bookmark
