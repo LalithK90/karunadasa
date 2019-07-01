@@ -2,7 +2,7 @@ package lk.learners.karunadasa.general.security.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lk.learners.karunadasa.resourses.company.human.entity.Employee;
+import lk.learners.karunadasa.resoursesCompany.human.entity.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

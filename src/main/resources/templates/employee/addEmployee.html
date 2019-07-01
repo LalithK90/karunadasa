@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 
@@ -38,9 +38,9 @@
                         </ul>
                         <div class="col-sm-6 text-left">
                             <div class="form-group" th:if="${addStatus==false}">
-                                <label class="control-label col-md-4" for="txtNumber">ID :</label>
+                                <label class="control-label col-md-4" for="txtId">ID :</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" id="txtNumber" name="id" placeholder="Enter ID Here"
+                                    <input class="form-control" id="txtId" name="id" placeholder="Enter ID Here"
                                            th:field="*{id}" type="text"/>
                                     <span class="error" th:errors="*{id}" th:if="${#fields.hasErrors('id')}">Error Number</span>
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4" for="title">Title</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" th:field="*{title}" id="title">
+                                    <select class="form-control" id="title" th:field="*{title}">
                                         <option th:each="titles : ${title}"
                                                 th:text="${titles.title}"
                                                 th:value="${titles}"></option>
@@ -104,21 +104,18 @@
                                               th:field="*{address}"></textarea>
                                     <span class="error" th:errors="*{address}" th:if="${#fields.hasErrors('address')}">Error Address</span>
                                 </div>
-                            </div><div class="form-group">
-                            <label class="control-label col-md-4" for="dateOfBirth">Birth Date<span
-                                    class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <input class="form-control" id="dateOfBirth" name="dateOfBirth"
-                                       placeholder="Ex: 1990 - 01 - 20"
-                                       required th:field="*{dateOfBirth}" type="date"/>
-                                <span class="error" th:errors="*{dateOfBirth}"
-                                      th:if="${#fields.hasErrors('dateOfBirth')}">Error Birthday</span>
                             </div>
-                        </div>
-                        </div>
-                        <!-- /.col-sm-6 -->
-                        <div class="col-sm-6 text-left">
-
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="dateOfBirth">Birth Date<span
+                                        class="text-danger">*</span></label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="dateOfBirth" name="dateOfBirth"
+                                           placeholder="Ex: 1990 - 01 - 20"
+                                           required th:field="*{dateOfBirth}" type="date"/>
+                                    <span class="error" th:errors="*{dateOfBirth}"
+                                          th:if="${#fields.hasErrors('dateOfBirth')}">Error Birthday</span>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label col-md-4" th:for="gender">Gender</label>
                                 <div class="col-md-4">
@@ -126,6 +123,20 @@
                                         <option th:each="genders : ${gender}"
                                                 th:text="${genders.gender}"
                                                 th:value="${genders}"></option>
+                                    </select>
+                                    <span class="error" th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}">Error Gender</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-sm-6 -->
+                        <div class="col-sm-6 text-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" th:for="bloodGroup">Blood Group</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="bloodGroup" th:field="*{bloodGroup}">
+                                        <option th:each="bloodGroups : ${bloodGroup}"
+                                                th:text="${bloodGroups.bloodGroup}"
+                                                th:value="${bloodGroups}"></option>
                                     </select>
                                     <span class="error" th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}">Error Gender</span>
                                 </div>
@@ -193,10 +204,10 @@
                                 <label class="control-label col-md-4" for="employeeStatus">Employee Status</label>
                                 <div class="col-md-4">
                                     <!-- /.col-md-8 -->
-                                    <select class="form-control" id="employeeStatus" *{employeeStatus}">
-                                        <option th:each="employeeStatus : ${employeeStatus}"
-                                                th:text="${employeeStatus.employeeStatus}"
-                                                th:value="${employeeStatus}"></option>
+                                    <select *{employeeStatus} class="form-control" id="employeeStatus">
+                                    <option th:each="employeeStatus : ${employeeStatus}"
+                                            th:text="${employeeStatus.employeeStatus}"
+                                            th:value="${employeeStatus}"></option>
                                     </select>
                                 </div>
                             </div>

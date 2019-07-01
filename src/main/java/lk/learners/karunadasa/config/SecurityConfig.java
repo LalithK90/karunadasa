@@ -82,6 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //Need to login for access those are
                 .antMatchers("/employee/**").hasRole("MANAGER")
+                .antMatchers("/employee/**").hasRole("MANAGER")
                 .antMatchers("/user/**").hasRole("MANAGER")
                 .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
                 .anyRequest()

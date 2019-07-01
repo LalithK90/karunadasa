@@ -40,13 +40,14 @@ public class ProfileController {
         return "login/passwordChange";
     }
 
-    @RequestMapping(value = "/user/passwordChange", method = RequestMethod.POST)
+    @RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
     public String passwordChange(@Valid @ModelAttribute PasswordChange passwordChange, Model model, BindingResult result) {
         User user = userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext().getAuthentication().getName()));
-
+        System.out.println(passwordChange.toString());
         if ((!result.hasErrors()) && (passwordEncoder.matches(passwordChange.getOpsw(), user.getPassword())) && (passwordChange.getNpsw().equals(passwordChange.getNrepsw()))) {
             user.setPassword(passwordChange.getNpsw());
             userService.persist(user);
+            System.out.println("user password update");
             model.addAttribute("message", "Successfully Change Your Password");
             model.addAttribute("alert", true);
             return "fragments/alert";
