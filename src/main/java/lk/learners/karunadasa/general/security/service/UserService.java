@@ -42,8 +42,8 @@ public class UserService implements AbstractService<User, Long>
         if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else
-            user.setPassword(((User)userDao.getOne(user.getId())).getPassword());
-        return (User)userDao.save(user);
+            user.setPassword(userDao.getOne(user.getId()).getPassword());
+        return userDao.save(user);
     }
 
     public boolean delete(Long id)
@@ -69,17 +69,6 @@ public class UserService implements AbstractService<User, Long>
     {
         return userDao.findUserIdByUserName(userName);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     public User findByUserName(String name)

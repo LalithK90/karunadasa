@@ -14,19 +14,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    public UserDetailsServiceImpl() {
+    @Autowired
+    public UserDetailsServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         User user = userDao.findByUsername(username);
-        if (user == null) {
+        CustomerUserDetails userDetails;
+        if (user != null) {
+            userDetails = new CustomerUserDetails();
+            userDetails.setUser(user);
+        } else {
             throw new UsernameNotFoundException("User not exist with name : " + username);
         }
-        return new CustomerUserDetails(user);
-    }
+        return userDetails;
 }
+}
+

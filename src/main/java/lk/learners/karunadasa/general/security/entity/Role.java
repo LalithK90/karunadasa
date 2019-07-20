@@ -1,47 +1,25 @@
 package lk.learners.karunadasa.general.security.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     private Long id;
 
     private String roleName;
 
-    public Role() {
-    }
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+    private Set<User> users;
 
-    public String getName() {
-        return roleName;
-    }
-
-    public void setName(String name) {
-        this.roleName = name;
-    }
-
-    public Role(String name) {
-        this.roleName = name;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Role)) return false;
-        Role role = (Role) obj;
-        return Objects.equals(id, role.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

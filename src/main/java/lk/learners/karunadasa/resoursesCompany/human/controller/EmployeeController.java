@@ -3,10 +3,10 @@ package lk.learners.karunadasa.resoursesCompany.human.controller;
 import lk.learners.karunadasa.general.security.entity.User;
 import lk.learners.karunadasa.general.security.service.UserService;
 import lk.learners.karunadasa.resoursesCompany.human.entity.Employee;
-import lk.learners.karunadasa.resoursesCompany.human.service.EmployeeService;
 import lk.learners.karunadasa.resoursesCompany.human.entity.Enum.*;
-import lk.learners.karunadasa.util.DateTimeAgeService;
-import lk.learners.karunadasa.util.EmailService;
+import lk.learners.karunadasa.resoursesCompany.human.service.EmployeeService;
+import lk.learners.karunadasa.util.service.DateTimeAgeService;
+import lk.learners.karunadasa.util.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,12 +55,7 @@ public class EmployeeController {
         model.addAttribute("employee", employeeService.findById(id));
         model.addAttribute("newEmployee", employeeService.findById(id).getNumber());
         model.addAttribute("addStatus", false);
-        model.addAttribute("title", Title.values());
-        model.addAttribute("gender", Gender.values());
-        model.addAttribute("civilStatus", CivilStatus.values());
-        model.addAttribute("employeeStatus", EmployeeStatus.values());
-        model.addAttribute("designation", Designation.values());
-        model.addAttribute("bloodGroup", BloodGroup.values());
+        commonMethodForEmployee(model);
         return "employee/addEmployee";
     }
 
@@ -92,23 +87,23 @@ public class EmployeeController {
         model.addAttribute("addStatus", true);
         model.addAttribute("lastEmployee", input);
         model.addAttribute("newEmployee", newEmployeeNumber);
+        commonMethodForEmployee(model);
+        model.addAttribute("employee", new Employee());
+        return "employee/addEmployee";
+    }
+
+    private void commonMethodForEmployee(Model model) {
         model.addAttribute("title", Title.values());
         model.addAttribute("gender", Gender.values());
         model.addAttribute("civilStatus", CivilStatus.values());
         model.addAttribute("employeeStatus", EmployeeStatus.values());
         model.addAttribute("designation", Designation.values());
         model.addAttribute("bloodGroup", BloodGroup.values());
-        model.addAttribute("employee", new Employee());
-        return "employee/addEmployee";
     }
-
 
     private boolean commonMail(Employee employee) {
         String message = "Welcome to Excellent Health Solution \n Your registration number is " + employee.getNumber() + "\nYour Details are \n " + employee.getTitle().getTitle() + " " + employee.getName() + "\n " + employee.getNic() + "\n " + employee.getDateOfBirth() + "\n " + employee.getMobile() + "\n " + employee.getLand() + "\n " + employee.getAddress() + "\n " + employee.getDateOfAssignment() + "\n\n\n\n\n Highly advice you, if there is any changes on your details, Please informed the management\n If you update your date up to date with us, otherwise we will not have to provide better serviceStation to you.\n \n \n   Thank You\n Excellent Health Solution";
-
-
-        boolean isFlag = emailService.sendPatientRegistrationEmail(employee.getEmail(), "Welcome to Excellent Health Solution ", message);
-        return isFlag;
+        return emailService.sendPatientRegistrationEmail(employee.getEmail(), "Welcome to Excellent Health Solution ", message);
     }
 
     @RequestMapping(value = {"/add", "/update"}, method = RequestMethod.POST)
@@ -186,7 +181,7 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
-    @RequestMapping(value = "/search", method =RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(Model model, Employee employee) {
         model.addAttribute("employeeDetail", employeeService.search(employee));
         return "employee/employee-detail";

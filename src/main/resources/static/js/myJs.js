@@ -12,10 +12,16 @@ $(document).ready(function () {
     /*//Nav bar properties - end//*/
 
     /* selected field colour and add selected lab test table - start*/
-    $('#myTable tbody tr').bind('click', function (e) {
+    $('#myTable tbody tr ').bind('click', function (e) {
+
+//todo --> need to create checkbox select or notR
+
         $(e.currentTarget).children('th').css('background-color', '#00FFFF');
+
         checkLabTestInArrayOrNot($(e.currentTarget).children('th'));
     });
+
+
     /* selected field colour and add selected lab test table - end*/
     /*//--------------- data table short using - data table plugin ------- start //*/
     $("#myTable").DataTable({
@@ -45,22 +51,16 @@ $(document).ready(function () {
     });
 //prevent checkbox==null before submit - end
 
-    //WYSIWYG add to text area
-    //let textarea =document.getElementById("description");
-    // sceditor.create(textarea);
-    //     , {
-    //     format: 'bbcode',
-    //         icons: 'monocons',
-    //         style: '../minified/themes/content/default.min.css'
-    // });
 
 });
 // regex
 let nicRegex = /^([0-9]{9}[vV|xX])|^([0-9]{12})$/;
 let mobileRegex = /^([0][7][\d]{8}$)|^([7][\d]{8})$/;
-let nameRegex = /^[a-zA-Z]{5}[ a-zA-Z]+$/;
+let landRegex = /^([0][\d]{9}])|([\d]{9})$/;
+let nameRegex = /^[a-zA-Z]{2}[ a-zA-Z]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
+let onlyNumberRegex = /^[0-9]*$/;
 
 
 /*//Nic - data of birth - start//*/
@@ -70,6 +70,7 @@ function dateLengthValidate(day) {
     }
     return day;
 }
+
 function calculateDateOfBirth(nic) {
 
     let dateOfBirth = null;
@@ -211,7 +212,10 @@ function calculateGender(nic) {
     let gender = null;
     if (nic.length === 10 && nic[9] === "V" || nic[9] === "v" || nic[9] === "x" || nic[9] === "X") {
         if (nic[9] === "v" || nic[9] === "x") {
-            alert(` Please change "v" or "x" to "V" or "X" `);
+            swal({
+                title: ` Please change "v" or "x" to "V" or "X" `,
+                icon: "warning",
+            });
         }
         if (+nic.substr(2, 3) < 500) gender = 'MALE';
         else gender = 'FEMALE';
@@ -236,7 +240,7 @@ $("#mobile").bind("keyup", function () {
 });
 $("#land").bind("keyup", function () {
     let land = $(this).val();
-    if (mobileRegex.test(land)) {
+    if (landRegex.test(land)) {
         backgroundColourChangeGood($(this));
     } else {
         backgroundColourChangeBad($(this));
@@ -269,13 +273,25 @@ $("#invoiceNumber").bind("keyup", function () {
         backgroundColourChangeBad($(this));
     }
 });
+//patient validation
+$("#patientNumber").bind("keyup", function () {
+    let patientNumber = $(this).val();
+    if (invoiceNumberRegex.test(patientNumber)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
 //colour change function --start
 function backgroundColourChangeGood(id) {
     $(id).css('background-color', '#00FFFF');
 }
+
 function backgroundColourChangeBad(id) {
-    $(id).css('background-color', '#FF00AA');
+    $(id).css('background-color', '#ff99d6');
 }
+
 function backgroundColourChangeNothingToChange(id) {
     $(id).css('background-color', '#ffffff');
 }
@@ -286,14 +302,14 @@ function backgroundColourChangeNothingToChange(id) {
 
 // el (id of content)is variable that need to give when function call
 function printContent(el) {
-    // restorepage = current document
-    let restorepage = document.body.innerHTML;
-    // printcontent = need to print area that area must enclosed with div
+    // restore page = current document
+    let restorePage = document.body.innerHTML;
+    // print content = need to print area that area must enclosed with div
     document.body.innerHTML = document.getElementById(el).innerHTML;
     //called javascript print function
     window.print();
     //after print set current web page
-    document.body.innerHTML = restorepage;
+    document.body.innerHTML = restorePage;
 }
 
 //AJAX FUNCTION CALL
@@ -310,17 +326,28 @@ async function getData(url) {
 
 // conformation message and to login page
 function conformationAndLoginWindow() {
-    let r = confirm("There is no way to access to the system without re re-login \n Please click \'Ok\' to login");
-    if (r === true) {
-        let loginUrl = window.location.protocol + "/login";
-        window.open(loginUrl, '_self');
-    }
+    let message = "There is no way to access to the system without  re-login \n Please click \'Ok\' to login";
+    swal({
+        title: "Attention !",
+        icon: "warning",
+        text: message,
+        buttons: {
+            cancel: true,
+            confirm: true,
+        },
+    }).then(value => {
+        if (value) {
+            let loginUrl = window.location.protocol + "/login";
+            window.open(loginUrl, '_self');
+        }
+    });
 }
 
 // content show table show and hide - start
 function contentShow(contentName) {
     contentName.removeAttribute("class");
 }
+
 function contentHide(contentName) {
     contentName.setAttribute("class", "display");
 }

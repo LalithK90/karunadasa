@@ -17,6 +17,38 @@ class LabTest {
         this._name = name;
         this._price = price;
     }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
+
+    get code() {
+        return this._code;
+    }
+
+    set code(value) {
+        this._code = value;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(value) {
+        this._name = value;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    set price(value) {
+        this._price = value;
+    }
 }
 
 function rowDataToLabTest(rowDetails) {
@@ -104,10 +136,10 @@ function addRow(labTest) {
     updateTotalPrice(labTest.price);
 
     row.insertCell(0).innerHTML = labTest.id;
-    row.insertCell(1).innerHTML = `<input type="text" name="labTests" class="form-control" value="${labTest.id}" readonly>`;
+    row.insertCell(1).innerHTML = `<input class="tableCell" type="text" name="labTests" value="${labTest.id}" readonly>`;
     row.insertCell(2).innerHTML = labTest.code;
     row.insertCell(3).innerHTML = labTest.name;
-    row.insertCell(4).innerHTML = '<input type="button" value = "Remove" onClick="deleteRow(this)" class="btn btn-danger">';
+    row.insertCell(4).innerHTML = '<button value="Remove" class="btn btn-danger" onClick="deleteRow(this)"><i style="font-size:24px" class="fa">&#xf00d;</i></button>';
 
 }
 
@@ -253,29 +285,37 @@ $("#patientFindValue").on("keyup", function () {
         case ("name"):
             if (nameRegex.test(selectedValue)) {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#7ae899', 'important');
+                contentShow(document.getElementById("patientSearch"));
             } else {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#ff88b3', 'important');
+                contentHide(document.getElementById("patientSearch"));
             }
             break;
         case ("nic"):
             if (nicRegex.test(selectedValue)) {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#7ae899', 'important');
+                contentShow(document.getElementById("patientSearch"));
             } else {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#ff88b3', 'important');
+                contentHide(document.getElementById("patientSearch"));
             }
             break;
         case ("number"):
             if (numberRegex.test(selectedValue)) {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#7ae899', 'important');
+                contentShow(document.getElementById("patientSearch"));
             } else {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#ff88b3', 'important');
+                contentHide(document.getElementById("patientSearch"));
             }
             break;
         case ("mobile"):
             if (mobileRegex.test(selectedValue)) {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#7ae899', 'important');
+                contentShow(document.getElementById("patientSearch"));
             } else {
                 document.getElementById("patientFindValue").style.setProperty('background-color', '#ff88b3', 'important');
+                contentHide(document.getElementById("patientSearch"));
             }
             break;
 
@@ -469,11 +509,39 @@ function fillPatientDetailsForm(patientInArray) {
 }
 
 /*Patient details taken - end*/
+//balance settlement
+$("#amountTendered").on("keyup", function () {
+    $("#balance").val($("#amountTendered").val() - $("#amount").val());
+
+    if ($("#balance").val() < 0 ) {
+        backgroundColourChangeBad($(this));
+        contentHide(document.getElementById("btnSubmitInvoice"));
+    } else{
+        backgroundColourChangeGood($(this));
+        contentShow(document.getElementById("btnSubmitInvoice"));
+        $("#btnSubmitInvoice").attr('class', 'btn btn-success');
+
+    }
+
+});
 
 
 //discount ratio apply or not
 $("#cmbDiscountRatio").on("change", function () {
     $("#amount").val($("#totalPrice").val() - ($("#totalPrice").val() * (parseFloat($("#cmbDiscountRatio option:selected").text()) / 100)));
+
+    if  ($("#amountTendered").val()!==""){
+
+            $("#balance").val($("#amountTendered").val() - $("#amount").val());
+
+            if ($("#balance").val() < 0) {
+                contentHide(document.getElementById("btnSubmitInvoice"));
+            } else {
+                contentShow(document.getElementById("btnSubmitInvoice"));
+                $("#btnSubmitInvoice").attr('class', 'btn btn-success');
+
+            }
+    }
 });
 //payment method show and hide
 $("#cmbPaymentMethod").on("change", function () {
@@ -481,6 +549,7 @@ $("#cmbPaymentMethod").on("change", function () {
     if ($("#cmbPaymentMethod").val() === "CREDITCARD" || $("#cmbPaymentMethod").val() === "CHEQUE") {
         contentHide(document.getElementById("cash"));
         contentShow(document.getElementById("card"));
+        $("#amountTendered, #balance").val(" ");
     } else {
         contentHide(document.getElementById("card"));
         contentShow(document.getElementById("cash"));
@@ -503,21 +572,6 @@ $("#cardNumber").on("keyup", function () {
             document.getElementById("cardNumber").style.setProperty('background-color', '#7ae899', 'important');
             $("#cardType").html("Visa, Master, Discover or JCB");
         }
-    }
-
-});
-//balance settlement
-$("#amountTendered").on("keyup", function () {
-    $("#balance").val($("#amountTendered").val() - $("#amount").val());
-
-    if ($("#balance").val() < 0) {
-        backgroundColourChangeBad($(this));
-        contentHide(document.getElementById("btnSubmitInvoice"));
-    } else {
-        backgroundColourChangeGood($(this));
-        contentShow(document.getElementById("btnSubmitInvoice"));
-        $("#btnSubmitInvoice").attr('class', 'btn btn-success');
-
     }
 
 });

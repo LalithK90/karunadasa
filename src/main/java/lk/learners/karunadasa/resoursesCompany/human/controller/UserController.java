@@ -5,7 +5,7 @@ import lk.learners.karunadasa.general.security.entity.User;
 import lk.learners.karunadasa.general.security.service.RoleService;
 import lk.learners.karunadasa.general.security.service.UserService;
 import lk.learners.karunadasa.resoursesCompany.human.service.EmployeeService;
-import lk.learners.karunadasa.util.DateTimeAgeService;
+import lk.learners.karunadasa.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

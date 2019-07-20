@@ -3,10 +3,7 @@ package lk.learners.karunadasa.general.security.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.learners.karunadasa.resoursesCompany.human.entity.Employee;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,11 +12,10 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @JsonIgnoreProperties(value ="createdDate", allowGetters = true)
 public class User {
     @Id
@@ -45,11 +41,12 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdDate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
 
 
 }
