@@ -1,6 +1,7 @@
+/*
 package lk.learners.karunadasa.asset.student.controller;
 
-import lk.learners.karunadasa.general.security.service.UserService;
+import lk.learners.karunadasa.security.service.UserService;
 import lk.learners.karunadasa.asset.commonAsset.Enum.Gender;
 import lk.learners.karunadasa.asset.commonAsset.Enum.Title;
 import lk.learners.karunadasa.asset.student.entity.Student;
@@ -169,4 +170,4 @@ public class StudentController {
         model.addAttribute("patientDetail", studentService.search(student));
         return "student/student-detail";
     }
-}
+}*/

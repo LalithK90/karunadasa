@@ -1,7 +1,7 @@
-package lk.learners.karunadasa.general.security.dao;
+package lk.learners.karunadasa.security.dao;
 
 
-import lk.learners.karunadasa.general.security.entity.User;
+import lk.learners.karunadasa.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserDao extends JpaRepository< User, Long> {
 
     @Query(value = "select id from User where employee_id=?1", nativeQuery = true)
     Long findByEmployeeId(@Param("employee_id") Long id);

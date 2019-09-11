@@ -3,6 +3,7 @@ package lk.learners.karunadasa.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.learners.karunadasa.asset.commonAsset.Enum.*;
+import lk.learners.karunadasa.util.audit.AuditEntity;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,13 +18,9 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
-    private Long id;
+@EqualsAndHashCode( callSuper = true )
+public class Employee extends AuditEntity {
+
 
     @NotNull(message = "Number is required")
     private String number;
@@ -72,12 +69,6 @@ public class Employee {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfAssignment;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updatedAt;
 
 
 

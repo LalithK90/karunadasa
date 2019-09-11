@@ -1,4 +1,4 @@
-package lk.learners.karunadasa.general.security.entity;
+package lk.learners.karunadasa.security.entity;
 
 import javax.validation.constraints.Size;
 

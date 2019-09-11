@@ -1,8 +1,8 @@
-package lk.learners.karunadasa.general.controller;
+package lk.learners.karunadasa.asset.commonAsset.controller;
 
-import lk.learners.karunadasa.general.security.entity.PasswordChange;
-import lk.learners.karunadasa.general.security.entity.User;
-import lk.learners.karunadasa.general.security.service.UserService;
+import lk.learners.karunadasa.security.entity.PasswordChange;
+import lk.learners.karunadasa.security.entity.User;
+import lk.learners.karunadasa.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,9 +1,9 @@
-package lk.learners.karunadasa.asset.commonAsset.controller;
+package lk.learners.karunadasa.security.controller;
 
 
-import lk.learners.karunadasa.general.security.entity.User;
-import lk.learners.karunadasa.general.security.service.RoleService;
-import lk.learners.karunadasa.general.security.service.UserService;
+import lk.learners.karunadasa.security.entity.User;
+import lk.learners.karunadasa.security.service.RoleService;
+import lk.learners.karunadasa.security.service.UserService;
 import lk.learners.karunadasa.asset.employee.service.EmployeeService;
 import lk.learners.karunadasa.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;

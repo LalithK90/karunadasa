@@ -1,4 +1,4 @@
-package lk.learners.karunadasa.general.controller;
+package lk.learners.karunadasa.asset.commonAsset.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

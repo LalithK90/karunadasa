@@ -1,9 +1,9 @@
-package lk.learners.karunadasa.general.security.service;
+package lk.learners.karunadasa.security.service;
 
 
-import lk.learners.karunadasa.general.security.CustomerUserDetails;
-import lk.learners.karunadasa.general.security.dao.UserDao;
-import lk.learners.karunadasa.general.security.entity.User;
+import lk.learners.karunadasa.security.CustomerUserDetails;
+import lk.learners.karunadasa.security.dao.UserDao;
+import lk.learners.karunadasa.security.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

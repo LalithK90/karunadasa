@@ -1,7 +1,7 @@
 package lk.learners.karunadasa.config;
 
 
-import lk.learners.karunadasa.general.security.service.UserDetailsServiceImpl;
+import lk.learners.karunadasa.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

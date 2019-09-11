@@ -1,10 +1,11 @@
 package lk.learners.karunadasa.asset.finance;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lk.learners.karunadasa.general.security.entity.User;
+import lk.learners.karunadasa.security.entity.User;
 import lk.learners.karunadasa.asset.student.entity.Student;
 import lk.learners.karunadasa.asset.finance.Enum.InvoicePrintOrNot;
 import lk.learners.karunadasa.asset.finance.Enum.PaymentMethod;
+import lk.learners.karunadasa.util.audit.AuditEntity;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,13 +19,10 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt","balance","discountAmount","bankName","cardNumber"}, allowGetters = true)
-public class Invoice {
-    @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode( callSuper = true )
+@JsonIgnoreProperties(value = {"balance","discountAmount","bankName","cardNumber"}, allowGetters = true)
+public class Invoice extends AuditEntity {
+
 
     @Column(name = "number", nullable = false, unique = true)
     private Long number;
@@ -64,13 +62,9 @@ public class Invoice {
     @Enumerated(EnumType.STRING)
     private InvoicePrintOrNot invoicePrintOrNot;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
-
     @Column(nullable = false, updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime invoicedAt;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdDate;
 
 
     @ManyToOne
@@ -82,8 +76,6 @@ public class Invoice {
     @ManyToOne
     private DiscountRatio discountRatio;
 
-    @ManyToOne
-    private User user;
 
 
 

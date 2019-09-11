@@ -1,7 +1,7 @@
-package lk.learners.karunadasa.general.security.service;
+package lk.learners.karunadasa.security.service;
 
-import lk.learners.karunadasa.general.security.dao.RoleDao;
-import lk.learners.karunadasa.general.security.entity.Role;
+import lk.learners.karunadasa.security.dao.RoleDao;
+import lk.learners.karunadasa.security.entity.Role;
 import lk.learners.karunadasa.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class RoleService implements AbstractService<Role, Long> {
+public class RoleService implements AbstractService< Role, Long> {
     private final RoleDao roleDao;
 
     @Autowired

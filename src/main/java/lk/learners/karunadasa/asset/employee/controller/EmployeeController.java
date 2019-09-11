@@ -1,7 +1,8 @@
+/*
 package lk.learners.karunadasa.asset.employee.controller;
 
-import lk.learners.karunadasa.general.security.entity.User;
-import lk.learners.karunadasa.general.security.service.UserService;
+import lk.learners.karunadasa.security.entity.User;
+import lk.learners.karunadasa.security.service.UserService;
 import lk.learners.karunadasa.asset.employee.entity.Employee;
 import lk.learners.karunadasa.asset.commonAsset.Enum.*;
 import lk.learners.karunadasa.asset.employee.service.EmployeeService;
@@ -186,4 +187,4 @@ public class EmployeeController {
         model.addAttribute("employeeDetail", employeeService.search(employee));
         return "employee/employee-detail";
     }
-}
+}*/

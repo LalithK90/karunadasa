@@ -1,8 +1,8 @@
-package lk.learners.karunadasa.general.security.service;
+package lk.learners.karunadasa.security.service;
 
 import java.util.List;
-import lk.learners.karunadasa.general.security.dao.UserDao;
-import lk.learners.karunadasa.general.security.entity.User;
+import lk.learners.karunadasa.security.dao.UserDao;
+import lk.learners.karunadasa.security.entity.User;
 import lk.learners.karunadasa.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UserService implements AbstractService<User, Long>
+public class UserService implements AbstractService< User, Long>
 {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;

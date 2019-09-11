@@ -1,7 +1,7 @@
-package lk.learners.karunadasa.general.security;
+package lk.learners.karunadasa.security;
 
 
-import lk.learners.karunadasa.general.security.entity.User;
+import lk.learners.karunadasa.security.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
